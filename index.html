@@ -53,26 +53,25 @@
 
         /* Centralizando o bloco das mensagens */
         .message-wrapper {
-            position: relative;
-            height: 60px;
-            width: 90%;
-            max-width: 800px;
-            margin-top: 30px;
+            position: absolute;
+            bottom: 20px; /* Coloca as mensagens na parte inferior da tela */
+            width: 100%;
             text-align: center;
-            overflow: hidden; /* Garantir que as mensagens não saiam do contêiner */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Definindo um efeito suave de fade nas mensagens */
         .message {
-            position: absolute;
-            width: 100%;
             opacity: 0;
-            animation: fadeMessage 12s ease-in-out infinite;
-            display: inline-block;
             font-family: 'Quicksand', sans-serif;
             font-size: 2rem;
             color: #fff;
             font-weight: 500;
+            animation: fadeMessage 12s ease-in-out infinite;
+            margin: 5px 0;
         }
 
         /* Efeito de fade-in e fade-out nas mensagens */
