@@ -35,7 +35,7 @@
         }
 
         .navbar {
-            background: linear-gradient(270deg, #4b0082, #ffffff, #00008b, #9400d3); /* Adicionado branco */
+            background: linear-gradient(270deg, #4b0082, #cfcfcf, #00008b, #9400d3); /* Branco menos intenso */
             background-size: 400% 400%;
             animation: gradient 12s ease infinite;
             padding: 0.8rem 1.5rem; /* Reduzido o tamanho vertical */
@@ -55,7 +55,7 @@
             color: #fff;
         }
 
-        .btn-play, .btn-stop {
+        .btn-play, .btn-reset {
             padding: 1.5rem;
             border-radius: 50%;
             transition: background-color 0.3s, transform 0.2s ease;
@@ -68,7 +68,7 @@
             background-color: #4caf50;
         }
 
-        .btn-stop {
+        .btn-reset {
             background-color: #f44336;
         }
 
@@ -77,24 +77,30 @@
             transform: scale(1.1);
         }
 
-        .btn-stop:hover {
+        .btn-reset:hover {
             background-color: #d32f2f;
             transform: scale(1.1);
         }
 
-        .volume-control {
+        .volume-control-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
-            background-color: #616161;
-            border-radius: 5px;
-            height: 8px;
+            margin-top: 1rem;
         }
 
-        .track-info {
-            font-size: 1rem;
-            color: #e0e0e0;
-            margin-top: 1rem;
-            font-style: italic;
-            text-align: center;
+        .volume-control-container button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .volume-control-container button:hover {
+            color: #cfcfcf;
         }
 
         footer {
@@ -118,16 +124,12 @@
                 max-width: 350px;
             }
 
-            .btn-play, .btn-stop {
+            .btn-play, .btn-reset {
                 padding: 1rem;
             }
 
-            .volume-control {
-                height: 4px;
-            }
-
-            .track-info {
-                font-size: 0.8rem;
+            .volume-control-container button {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -153,15 +155,16 @@
                     <button id="play-btn" class="btn-play text-white" title="Play">
                         ▶️
                     </button>
-                    <button id="reset-btn" class="btn-stop text-white" title="Reset">
+                    <button id="reset-btn" class="btn-reset text-white" title="Reset">
                         🔄
                     </button>
                 </div>
 
                 <!-- Volume Control -->
-                <div class="w-full flex items-center mb-6">
-                    <label for="volume-control" class="text-white text-sm mr-2">🔊 Volume</label>
+                <div class="volume-control-container">
+                    <button id="volume-down" title="Diminuir volume">-</button>
                     <input id="volume-control" type="range" min="0" max="1" step="0.01" value="0.8" class="volume-control" />
+                    <button id="volume-up" title="Aumentar volume">+</button>
                 </div>
 
                 <!-- Track Info -->
@@ -172,7 +175,7 @@
 
     <!-- Footer -->
     <footer>
-        Feito com ❤️ por Maax
+        Feito com ❤️ por Maax.
     </footer>
 
     <script>
@@ -180,6 +183,8 @@
         const playBtn = document.getElementById('play-btn');
         const resetBtn = document.getElementById('reset-btn');
         const volumeControl = document.getElementById('volume-control');
+        const volumeUp = document.getElementById('volume-up');
+        const volumeDown = document.getElementById('volume-down');
 
         // Volume inicial
         audioPlayer.volume = 0.8;
@@ -194,6 +199,13 @@
             location.reload();
         };
 
+        // Função para ajustar o volume
+        const changeVolume = (step) => {
+            let newVolume = Math.min(Math.max(audioPlayer.volume + step, 0), 1);
+            audioPlayer.volume = newVolume;
+            volumeControl.value = newVolume;
+        };
+
         // Eventos de clique
         playBtn.addEventListener('click', playAudio);
         resetBtn.addEventListener('click', resetSite);
@@ -202,6 +214,14 @@
         volumeControl.addEventListener('input', (e) => {
             audioPlayer.volume = e.target.value;
         });
+
+        volumeUp.addEventListener('click', () => changeVolume(0.1));
+        volumeDown.addEventListener('click', () => changeVolume(-0.1));
+
+        // Autoplay após 3 segundos
+        setTimeout(() => {
+            audioPlayer.play();
+        }, 3000);
     </script>
 </body>
 </html>
