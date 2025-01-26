@@ -17,15 +17,15 @@
             flex-direction: column;
             color: #fff;
         }
-
+    
         html, body {
             height: 100%;
             overflow-x: hidden;
         }
-
+    
         .glass-effect {
             backdrop-filter: blur(12px);
-            background: rgba(0, 0, 0, 0.6);
+            background: #ffffff48;
             border-radius: 20px;
             padding: 3rem;
             width: 100%;
@@ -33,63 +33,65 @@
             margin: 0 auto;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
-
+    
         .navbar {
-            background: linear-gradient(270deg, #4b0082, #cfcfcf, #00008b, #9400d3); /* Branco menos intenso */
+            background: linear-gradient(270deg, #C701F0, #03A9F4, #123354, #9BDB4D); /* Branco menos intenso */
             background-size: 400% 400%;
             animation: gradient 12s ease infinite;
             padding: 0.8rem 1.5rem; /* Reduzido o tamanho vertical */
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-
+    
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
+    
         .navbar h1 {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #fff;
+            color: #e9ecf1e0;
         }
-
+    
         .btn-play, .btn-reset {
-            padding: 1.5rem;
-            border-radius: 50%;
+            width: 80px; /* Largura fixa */
+            height: 80px; /* Altura fixa */
+            border-radius: 50%; /* Bordas arredondadas */
             transition: background-color 0.3s, transform 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center; /* Garantir que o conteúdo fique centralizado */
         }
-
+    
         .btn-play {
-            background-color: #4caf50;
+            background-color: #9BDB4D;
         }
-
+    
         .btn-reset {
-            background-color: #f44336;
+            background-color: #F44336;
         }
-
+    
         .btn-play:hover {
-            background-color: #388e3c;
+            background-color: #58d45f;
             transform: scale(1.1);
         }
-
+    
         .btn-reset:hover {
-            background-color: #d32f2f;
+            background-color: #ef2525;
             transform: scale(1.1);
         }
-
+    
         .volume-control-container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             width: 100%;
             margin-top: 1rem;
         }
-
+    
         .volume-control-container button {
             background: none;
             border: none;
@@ -97,42 +99,56 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.2s;
+            margin: 0 0.5rem; /* Distância menor entre os botões e a barra de volume */
         }
-
+    
         .volume-control-container button:hover {
             color: #cfcfcf;
         }
-
+    
+        .volume-control {
+            width: 80%; /* Barra de volume com largura maior */
+            margin: 0 0.5rem; /* Distância entre a barra e os botões */
+        }
+    
+        .volume-label {
+            font-size: 0.8rem;
+            color: #cfcfcf;
+            margin-top: 0.3rem; /* Distância do texto em relação à barra */
+        }
+    
         footer {
-            background: rgba(0, 25, 50, 0.9); /* Azul muito escuro translúcido (estilo Iveco) */
+            background: #E9ECF1; /* Azul muito escuro translúcido (estilo Iveco) */
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6); /* Sombreamento superior */
             text-align: center;
             padding: 1.2rem; /* Ajuste no padding */
             font-size: 0.9rem;
-            color: #fff;
+            color: #7D90A2;
         }
-
+    
         /* Responsividade */
         @media (max-width: 480px) {
             .navbar h1 {
                 font-size: 1.4rem;
             }
-
+    
             .glass-effect {
                 padding: 1.5rem;
                 width: 90%;
                 max-width: 350px;
             }
-
+    
             .btn-play, .btn-reset {
-                padding: 1rem;
+                width: 70px; /* Largura ajustada para telas menores */
+                height: 70px; /* Altura ajustada para telas menores */
+                padding: 0.8rem;
             }
-
+    
             .volume-control-container button {
                 font-size: 1.2rem;
             }
         }
-    </style>
+    </style>    
 </head>
 <body>
 
@@ -144,7 +160,7 @@
     <!-- Main Content -->
     <main class="flex flex-col items-center justify-center flex-grow p-4">
         <div class="glass-effect">
-            <h2 class="text-3xl text-white text-center mb-6">Clique nos Botões abaixo</h2>
+            <h2 class="text-3xl text-white text-center mb-6">Clique Abaixo:</h2>
 
             <!-- Audio Player Section -->
             <div class="flex flex-col items-center">
@@ -153,10 +169,10 @@
                 <!-- Controls -->
                 <div class="w-full flex justify-center items-center space-x-6 mb-6">
                     <button id="play-btn" class="btn-play text-white" title="Play">
-                        ▶️
+                        ▶
                     </button>
                     <button id="reset-btn" class="btn-reset text-white" title="Reset">
-                        🔄
+                        ⏹
                     </button>
                 </div>
 
@@ -166,6 +182,7 @@
                     <input id="volume-control" type="range" min="0" max="1" step="0.01" value="0.8" class="volume-control" />
                     <button id="volume-up" title="Aumentar volume">+</button>
                 </div>
+                <p class="volume-label">Volume</p>
 
                 <!-- Track Info -->
                 <p id="track-info" class="track-info">Streaming live music 🎶</p>
@@ -185,43 +202,69 @@
         const volumeControl = document.getElementById('volume-control');
         const volumeUp = document.getElementById('volume-up');
         const volumeDown = document.getElementById('volume-down');
-
+    
         // Volume inicial
         audioPlayer.volume = 0.8;
-
-        // Função para iniciar o áudio
-        const playAudio = () => {
-            audioPlayer.play();
+    
+        // Função para carregar o link do stream a partir do arquivo .txt
+        const loadStreamLink = async () => {
+            try {
+                const response = await fetch('stream.txt');  // Aqui você coloca o caminho para o seu arquivo
+                if (response.ok) {
+                    const streamLink = await response.text();
+                    return streamLink.trim(); // Retorna o conteúdo do arquivo (link)
+                } else {
+                    throw new Error('Não foi possível carregar o arquivo');
+                }
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
         };
-
+    
+        // Função para iniciar o áudio
+        const playAudio = async () => {
+            const streamLink = await loadStreamLink(); // Lê o link do arquivo
+            if (streamLink) {
+                audioPlayer.src = streamLink; // Define o src do player
+                audioPlayer.play();
+            } else {
+                alert('Erro ao carregar o link do stream');
+            }
+        };
+    
         // Função para reiniciar o site
         const resetSite = () => {
             location.reload();
         };
-
+    
         // Função para ajustar o volume
         const changeVolume = (step) => {
             let newVolume = Math.min(Math.max(audioPlayer.volume + step, 0), 1);
             audioPlayer.volume = newVolume;
             volumeControl.value = newVolume;
         };
-
+    
         // Eventos de clique
         playBtn.addEventListener('click', playAudio);
         resetBtn.addEventListener('click', resetSite);
-
+    
         // Controle de volume
         volumeControl.addEventListener('input', (e) => {
             audioPlayer.volume = e.target.value;
         });
-
+    
         volumeUp.addEventListener('click', () => changeVolume(0.1));
         volumeDown.addEventListener('click', () => changeVolume(-0.1));
-
+    
         // Autoplay após 3 segundos
-        setTimeout(() => {
-            audioPlayer.play();
+        setTimeout(async () => {
+            const streamLink = await loadStreamLink();
+            if (streamLink) {
+                audioPlayer.src = streamLink;
+                audioPlayer.play();
+            }
         }, 3000);
-    </script>
+    </script>    
 </body>
 </html>
