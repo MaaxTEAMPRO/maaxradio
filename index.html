@@ -17,81 +17,93 @@
             flex-direction: column;
             color: #fff;
         }
-    
+
         html, body {
             height: 100%;
             overflow-x: hidden;
         }
-    
+
         .glass-effect {
             backdrop-filter: blur(12px);
-            background: #ffffff48;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 20px;
             padding: 3rem;
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
-    
+
+        .glass-effect:hover {
+            transform: scale(1.05);
+        }
+
         .navbar {
-            background: linear-gradient(270deg, #c801f0c8, #03a8f4e6, #1233544f, #9bdb4dd6); /* Branco menos intenso */
+            background: linear-gradient(270deg, #c801f0c8, #03a8f4e6, #1233544f, #9bdb4dd6);
             background-size: 400% 400%;
             animation: gradient 45s ease infinite;
-            padding: 0.8rem 1.5rem; /* Reduzido o tamanho vertical */
+            padding: 1.2rem 2rem;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-    
+
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-    
+
         .navbar h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #e9ecf1e0;
+            letter-spacing: 2px;
         }
-    
+
         .btn-play, .btn-reset {
-            width: 80px; /* Largura fixa */
-            height: 80px; /* Altura fixa */
-            border-radius: 50%; /* Bordas arredondadas */
-            transition: background-color 0.3s, transform 0.2s ease;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center; /* Garantir que o conteúdo fique centralizado */
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
-    
+
         .btn-play {
             background-color: #9BDB4D;
         }
-    
+
         .btn-reset {
             background-color: #F44336;
         }
-    
+
         .btn-play:hover {
             background-color: #58d45f;
             transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-    
+
         .btn-reset:hover {
             background-color: #ef2525;
             transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-    
+
         .volume-control-container {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
-    
+
         .volume-control-container button {
             background: none;
             border: none;
@@ -99,56 +111,55 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.2s;
-            margin: 0 0.5rem; /* Distância menor entre os botões e a barra de volume */
+            margin: 0 1rem;
         }
-    
+
         .volume-control-container button:hover {
             color: #cfcfcf;
         }
-    
+
         .volume-control {
-            width: 80%; /* Barra de volume com largura maior */
-            margin: 0 0.5rem; /* Distância entre a barra e os botões */
+            width: 70%;
+            margin: 0 1rem;
         }
-    
+
         .volume-label {
-            font-size: 0.8rem;
+            font-size: 1rem;
             color: #cfcfcf;
-            margin-top: 0.3rem; /* Distância do texto em relação à barra */
+            margin-top: 0.5rem;
         }
-    
+
         footer {
-            background: #272A2D; /* Azul muito escuro translúcido (estilo Iveco) */
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6); /* Sombreamento superior */
+            background: #272A2D;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6);
             text-align: center;
-            padding: 1.2rem; /* Ajuste no padding */
-            font-size: 0.9rem;
+            padding: 1.5rem;
+            font-size: 1rem;
             color: #7D90A2;
         }
-    
-        /* Responsividade */
+
         @media (max-width: 480px) {
             .navbar h1 {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
-    
+
             .glass-effect {
-                padding: 1.5rem;
+                padding: 2rem;
                 width: 90%;
                 max-width: 350px;
             }
-    
+
             .btn-play, .btn-reset {
-                width: 70px; /* Largura ajustada para telas menores */
-                height: 70px; /* Altura ajustada para telas menores */
-                padding: 0.8rem;
-            }
-    
-            .volume-control-container button {
+                width: 80px;
+                height: 80px;
                 font-size: 1.2rem;
             }
+
+            .volume-control-container button {
+                font-size: 1.3rem;
+            }
         }
-    </style>    
+    </style>
 </head>
 <body>
 
@@ -169,10 +180,10 @@
                 <!-- Controls -->
                 <div class="w-full flex justify-center items-center space-x-6 mb-6">
                     <button id="play-btn" class="btn-play text-white" title="Play">
-                        play
+                        Play
                     </button>
                     <button id="reset-btn" class="btn-reset text-white" title="Reset">
-                        stop
+                        Stop
                     </button>
                 </div>
 
@@ -209,10 +220,10 @@
         // Função para carregar o link do stream a partir do arquivo .txt
         const loadStreamLink = async () => {
             try {
-                const response = await fetch('stream.txt');  // Aqui você coloca o caminho para o seu arquivo
+                const response = await fetch('stream.txt');
                 if (response.ok) {
                     const streamLink = await response.text();
-                    return streamLink.trim(); // Retorna o conteúdo do arquivo (link)
+                    return streamLink.trim();
                 } else {
                     throw new Error('Não foi possível carregar o arquivo');
                 }
@@ -224,9 +235,9 @@
     
         // Função para iniciar o áudio
         const playAudio = async () => {
-            const streamLink = await loadStreamLink(); // Lê o link do arquivo
+            const streamLink = await loadStreamLink(); 
             if (streamLink) {
-                audioPlayer.src = streamLink; // Define o src do player
+                audioPlayer.src = streamLink;
                 audioPlayer.play();
             } else {
                 alert('Erro ao carregar o link do stream');
