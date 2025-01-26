@@ -3,49 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eu te amo lunna!</title>
+    <title>Eu te amo!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #121212;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
+            background: linear-gradient(135deg, #f6b1c3, #ffb3d9);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            text-align: center;
+            animation: backgroundAnimation 5s infinite alternate;
         }
-        
+
         h1 {
-            font-size: 4rem;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 4.5rem;
             margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .heart {
-            font-size: 5rem;
-            color: red;
-            animation: pulse 1.5s infinite;
+            font-size: 8rem;
+            color: #ff4b8d;
+            animation: heartPulse 1.5s infinite;
+            transform-origin: center;
         }
 
-        @keyframes pulse {
+        .message {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 20px;
+            font-weight: 500;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-out 0.5s forwards;
+        }
+
+        @keyframes heartPulse {
             0% {
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.3);
+                transform: scale(1.2);
             }
             100% {
                 transform: scale(1);
             }
         }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #f6b1c3, #ffb3d9);
+            }
+            100% {
+                background: linear-gradient(135deg, #ffb3d9, #f6b1c3);
+            }
+        }
+
+        /* Animating the heart floating gently */
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            animation: heartPulse 1.5s infinite, heartFloat 3s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
     <div>
-        <h1>Eu te Amo Lunna!</h1>
+        <h1>Eu te amo!</h1>
         <div class="heart">❤️</div>
+        <p class="message">Você é tudo para mim.</p>
     </div>
 </body>
 </html>
