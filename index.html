@@ -35,17 +35,24 @@
         }
 
         .navbar {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(270deg, #4b0082, #00008b, #9400d3);
+            background-size: 400% 400%;
+            animation: gradient 12s ease infinite;
             padding: 1.5rem;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .navbar h1 {
             font-size: 2rem;
             font-weight: bold;
-            color: #8c4dff;
+            color: #fff;
         }
 
         .btn-play, .btn-stop {
@@ -91,19 +98,12 @@
         }
 
         footer {
-            background: linear-gradient(270deg, #4a4e69, #22223b, #4a4e69);
-            background-size: 400% 400%;
-            animation: gradient 6s ease infinite;
+            background: rgba(0, 0, 139, 0.85); /* Azul escuro translúcido */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.6); /* Sombreamento superior */
             text-align: center;
             padding: 1.5rem;
             font-size: 0.9rem;
             color: #fff;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Responsividade */
