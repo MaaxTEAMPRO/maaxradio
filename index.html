@@ -13,6 +13,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
             overflow: hidden;
@@ -26,23 +27,48 @@
             margin-bottom: 20px;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 3s ease-out;
         }
 
         .heart {
-            font-size: 8rem;
+            font-size: 10rem;
             color: #ff4b8d;
-            animation: heartPulse 1.5s infinite;
+            animation: heartPulse 1.5s infinite, heartFloat 3s ease-in-out infinite;
             transform-origin: center;
         }
 
         .message {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #fff;
             margin-top: 20px;
             font-weight: 500;
             opacity: 0.8;
-            animation: fadeIn 2s ease-out 0.5s forwards;
+            animation: fadeIn 3s ease-out 1s forwards;
+        }
+
+        .btn-love {
+            background-color: #ff4b8d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin-top: 30px;
+            cursor: pointer;
+            box-shadow: 0px 5px 15px rgba(255, 75, 141, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-love:hover {
+            background-color: #ff1f69;
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(255, 75, 141, 0.4);
+        }
+
+        .btn-love:active {
+            transform: scale(0.95);
         }
 
         @keyframes heartPulse {
@@ -66,7 +92,6 @@
             }
         }
 
-        /* Animating the heart floating gently */
         @keyframes heartFloat {
             0% {
                 transform: translateY(0);
@@ -79,16 +104,42 @@
             }
         }
 
-        .heart {
-            animation: heartPulse 1.5s infinite, heartFloat 3s ease-in-out infinite;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Floating cloud animation */
+        .cloud {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 150px;
+            height: 100px;
+            background: url('https://www.svgrepo.com/show/204450/cloud.svg') no-repeat center;
+            background-size: contain;
+            animation: cloudMove 10s linear infinite;
+        }
+
+        @keyframes cloudMove {
+            0% {
+                left: -200px;
+            }
+            100% {
+                left: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Eu te amo!</h1>
-        <div class="heart">❤️</div>
-        <p class="message">Você é tudo para mim.</p>
-    </div>
+    <div class="cloud"></div>
+    <h1>Eu te amo!</h1>
+    <div class="heart">❤️</div>
+    <p class="message">Você é tudo para mim.</p>
+    <button class="btn-love" onclick="alert('Você me faz tão feliz!')">Enviar Amor</button>
 </body>
 </html>
