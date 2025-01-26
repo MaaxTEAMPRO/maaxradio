@@ -19,7 +19,6 @@
             overflow: hidden;
             text-align: center;
             position: relative;
-            box-sizing: border-box;
         }
 
         h1 {
@@ -31,7 +30,7 @@
             animation: fadeIn 3s ease-out;
         }
 
-        /* Coração clicável sem bordas */
+        /* Coração clicável */
         .heart {
             font-size: 12rem;
             color: #ff4b8d;
@@ -49,9 +48,10 @@
         /* Mensagens com efeito de fade, alternando entre elas */
         .message-wrapper {
             position: relative;
-            height: 50px;
-            margin-top: 20px;
+            height: 100px; /* Definindo altura fixa para manter o espaço das mensagens */
             width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
         }
 
         .message {
