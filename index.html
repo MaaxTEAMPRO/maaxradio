@@ -18,7 +18,6 @@
             margin: 0;
             overflow: hidden;
             text-align: center;
-            animation: backgroundAnimation 5s infinite alternate;
             position: relative;
             box-sizing: border-box;
         }
@@ -37,7 +36,6 @@
             color: #ff4b8d;
             animation: heartPulse 1.5s infinite, heartFloat 3s ease-in-out infinite;
             transform-origin: center;
-            animation-duration: 3s;
         }
 
         .message {
@@ -76,15 +74,6 @@
             }
         }
 
-        @keyframes backgroundAnimation {
-            0% {
-                background: linear-gradient(135deg, #f6b1c3, #ffb3d9);
-            }
-            100% {
-                background: linear-gradient(135deg, #ffb3d9, #f6b1c3);
-            }
-        }
-
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -97,7 +86,7 @@
         /* Floating cloud animation */
         .cloud {
             position: absolute;
-            top: 5%;
+            top: 10%;
             left: 50%;
             width: 150px;
             height: 100px;
@@ -179,35 +168,35 @@
             }
         }
 
-        /* Soft glowing border */
-        .container {
-            border-radius: 20px;
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 50px rgba(255, 75, 141, 0.6);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .container::before {
-            content: "";
+        /* Additional Cloud and Sparkle effects */
+        .cloud2 {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 75, 141, 0.5);
-            animation: glowing 2s ease-in-out infinite alternate;
+            top: 30%;
+            left: 10%;
+            width: 100px;
+            height: 70px;
+            background: url('https://www.svgrepo.com/show/204450/cloud.svg') no-repeat center;
+            background-size: contain;
+            animation: cloudMove 15s linear infinite;
         }
 
-        @keyframes glowing {
+        /* Adding a soft pulse effect to the heart */
+        .heart2 {
+            font-size: 8rem;
+            color: #ff80bf;
+            animation: pulseEffect 1.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes pulseEffect {
             0% {
-                box-shadow: 0 0 10px rgba(255, 75, 141, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
             }
             100% {
-                box-shadow: 0 0 20px rgba(255, 75, 141, 1);
+                transform: scale(1);
             }
         }
 
@@ -215,17 +204,17 @@
 </head>
 <body>
     <div class="cloud"></div>
-    <div class="container">
-        <h1>Eu te amo!</h1>
-        <div class="heart">❤️</div>
-        <p class="message">Você é tudo para mim.</p>
+    <div class="cloud2"></div>
+    <h1>Eu te amo!</h1>
+    <div class="heart">❤️</div>
+    <div class="heart2">💖</div>
+    <p class="message">Você é o meu mundo, sempre.</p>
 
-        <!-- Floating stars -->
-        <div class="star star1"></div>
-        <div class="star star2"></div>
-        <div class="star star3"></div>
-        <div class="star star4"></div>
-        <div class="star star5"></div>
-    </div>
+    <!-- Floating stars -->
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
 </body>
 </html>
