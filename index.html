@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: url('wallpaper.png') no-repeat center center fixed;
+            background: no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -25,7 +25,7 @@
 
         .glass-effect {
             backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.147);
             border-radius: 20px;
             padding: 3rem;
             width: 100%;
@@ -40,9 +40,9 @@
         }
 
         .navbar {
-            background: linear-gradient(270deg, #c801f0c8, #03a8f4e6, #1233544f, #9bdb4dd6);
+            background: linear-gradient(270deg, #c801f0df, #03a8f4e8, #2f6de8b3, #9bdb4de4);
             background-size: 400% 400%;
-            animation: gradient 45s ease infinite;
+            animation: gradient 80s ease infinite;
             padding: 1.2rem 2rem;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -62,14 +62,14 @@
         }
 
         .btn-play, .btn-reset {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             transition: all 0.3s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.6rem;
+            font-size: 20px;
             font-weight: bold;
             text-transform: uppercase;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -85,48 +85,48 @@
         }
 
         .btn-play:hover {
-            background-color: #58d45f;
+            background-color: #86e513;
             transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .btn-reset:hover {
-            background-color: #ef2525;
+            background-color: #ff0000;
             transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .volume-label {
+            font-size: 25px;
+            color: #cfcfcf;
+            margin-top: 35px;
         }
 
         .volume-control-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            margin-top: 1.5rem;
+            width: 90%;
+            margin-top: 0.1px;
         }
 
         .volume-control-container button {
             background: none;
             border: none;
-            color: white;
-            font-size: 1.5rem;
+            color: #ffffff;
+            font-size: 40px;
             cursor: pointer;
             transition: color 0.2s;
             margin: 0 1rem;
         }
 
         .volume-control-container button:hover {
-            color: #cfcfcf;
+            color: #09ff00;
         }
 
         .volume-control {
             width: 70%;
             margin: 0 1rem;
-        }
-
-        .volume-label {
-            font-size: 1rem;
-            color: #cfcfcf;
-            margin-top: 0.5rem;
         }
 
         footer {
@@ -187,13 +187,13 @@
                     </button>
                 </div>
 
+                <p class="volume-label">Volume</p>
                 <!-- Volume Control -->
                 <div class="volume-control-container">
                     <button id="volume-down" title="Diminuir volume">-</button>
                     <input id="volume-control" type="range" min="0" max="1" step="0.01" value="0.8" class="volume-control" />
                     <button id="volume-up" title="Aumentar volume">+</button>
                 </div>
-                <p class="volume-label">Volume</p>
 
                 <!-- Track Info -->
                 <p id="track-info" class="track-info">Streaming live music 🎶</p>
@@ -207,6 +207,15 @@
     </footer>
 
     <script>
+        const changeWallpaper = () => {
+            const wallpapersPath = './';
+            const wallpapers = ['1.png', '2.png', '3.jpg']; // Lista de wallpapers
+            const randomIndex = Math.floor(Math.random() * wallpapers.length);
+            document.body.style.backgroundImage = `url('${wallpapersPath}${wallpapers[randomIndex]}')`;
+        }
+        // Chamada de funcao para carregar wallpaper
+        changeWallpaper();
+
         const audioPlayer = document.getElementById('audio-player');
         const playBtn = document.getElementById('play-btn');
         const resetBtn = document.getElementById('reset-btn');
@@ -267,15 +276,6 @@
     
         volumeUp.addEventListener('click', () => changeVolume(0.1));
         volumeDown.addEventListener('click', () => changeVolume(-0.1));
-    
-        // Autoplay após 3 segundos
-        setTimeout(async () => {
-            const streamLink = await loadStreamLink();
-            if (streamLink) {
-                audioPlayer.src = streamLink;
-                audioPlayer.play();
-            }
-        }, 3000);
     </script>    
 </body>
 </html>
