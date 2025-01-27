@@ -1,1 +1,1 @@
-https://stream.btsstream.com:8092/loveradio.aac
+https://1905-187-108-13-228.ngrok-free.app/stream.mp3
